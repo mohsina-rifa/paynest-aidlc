@@ -1,5 +1,6 @@
 package com.example.paynest.controller;
 
+import com.example.paynest.dto.TransactionResponse;
 import com.example.paynest.model.Transaction;
 import com.example.paynest.service.TransactionService;
 import org.springframework.http.HttpStatus;
@@ -25,9 +26,10 @@ public class TransactionController {
 
     //    CRUD : read
     @GetMapping("/{id}")
-    public Transaction findById(@PathVariable Integer id) {
-        return transactionService.findById(id);
+    public TransactionResponse findById(@PathVariable Integer id) {
+        return transactionService.findResponseById(id);
     }
+
 
     //    CRUD : update
     @PutMapping("/{id}")
@@ -41,6 +43,9 @@ public class TransactionController {
         transactionService.deleteById(id);
     }
 
+    //
+    // categories
+    //
     @PostMapping("/{id}/categories/{categoryId}")
     public ResponseEntity<Void> addCategory(@PathVariable Integer id,
                                             @PathVariable Integer categoryId) {
@@ -54,5 +59,6 @@ public class TransactionController {
         transactionService.removeCategory(id, categoryId);
         return ResponseEntity.noContent().build();
     }
+
 
 }
