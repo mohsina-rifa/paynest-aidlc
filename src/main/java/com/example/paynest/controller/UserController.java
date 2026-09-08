@@ -25,19 +25,19 @@ public class UserController {
 
     //    CRUD : read
     @GetMapping("/{id}")
-    public User findById(Integer id) {
+    public User findById(@PathVariable Integer id) {
         return userService.findById(id);
     }
 
     //    CRUD : update
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateById(Integer id, @RequestBody User user) {
+    public ResponseEntity<User> updateById(@PathVariable Integer id, @RequestBody User user) {
         return ResponseEntity.ok(userService.updateById(id, user));
     }
 
     //    CRUD : delete
     @DeleteMapping("/{id}")
-    public void deleteById(Integer id) {
+    public void deleteById(@PathVariable Integer id) {
         userService.deleteById(id);
     }
 }
