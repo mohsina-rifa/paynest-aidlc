@@ -40,4 +40,19 @@ public class TransactionController {
     public void deleteById(@PathVariable Integer id) {
         transactionService.deleteById(id);
     }
+
+    @PostMapping("/{id}/categories/{categoryId}")
+    public ResponseEntity<Void> addCategory(@PathVariable Integer id,
+                                            @PathVariable Integer categoryId) {
+        transactionService.addCategory(id, categoryId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}/categories/{categoryId}")
+    public ResponseEntity<Void> removeCategory(@PathVariable Integer id,
+                                               @PathVariable Integer categoryId) {
+        transactionService.removeCategory(id, categoryId);
+        return ResponseEntity.noContent().build();
+    }
+
 }
